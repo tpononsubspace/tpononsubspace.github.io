@@ -5,7 +5,7 @@
     */
     (function($) {
     "use strict"; // Start of use strict
-  
+
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
       if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -19,7 +19,7 @@
         }
       }
     });
-  
+
     // Scroll to top button appear
     $(document).scroll(function() {
       var scrollDistance = $(this).scrollTop();
@@ -29,18 +29,18 @@
         $('.scroll-to-top').fadeOut();
       }
     });
-  
+
     // Closes responsive menu when a scroll trigger link is clicked
     $('.js-scroll-trigger').click(function() {
       $('.navbar-collapse').collapse('hide');
     });
-  
+
     // Activate scrollspy to add active class to navbar items on scroll
     $('body').scrollspy({
       target: '#mainNav',
       offset: 80
     });
-  
+
     // Collapse Navbar
     var navbarCollapse = function() {
       if ($("#mainNav").offset().top > 100) {
@@ -53,7 +53,7 @@
     navbarCollapse();
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
-  
+
     // Floating label headings for the contact form
     $(function() {
       $("body").on("input propertychange", ".floating-label-form-group", function(e) {
@@ -64,6 +64,38 @@
         $(this).removeClass("floating-label-form-group-with-focus");
       });
     });
-  
+
+    function pad(num, size) {
+      var s = "000000000" + num;
+      return s.substr(s.length-size);
+    }
+
+    var srcStartImage = $(".comicRow img").attr('src');
+    var srcArray = srcStartImage.split("-");
+    var srcNumber = Number(srcArray[srcArray.length - 1].split(".")[0]);
+    srcNumber--;
+
+    $("#loadMore").click(function(e) { // click event for load more
+      e.preventDefault();
+      var counter = 3;
+
+      while (counter > 0) {
+        if (srcNumber == 0) {
+          counter = 0;
+          $("#loadMore").hide();
+        } else {
+          var comicTemplate = '<div class="row comicRow">' +
+            '<div class="col comicColumn mb-5">' +
+              '<div class="portfolio-main portfolio-item mx-auto">' +
+                '<img class="img-fluid" src="assets/img/portfolio/TToS-Comic-' + pad(srcNumber, 4) + '.png" alt="" />' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+          $(".comicGallery").append(comicTemplate).show('normal');
+          counter--;
+          srcNumber--;
+        }
+      }
+    });
+
   })(jQuery); // End of use strict
-  
