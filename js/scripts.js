@@ -72,29 +72,68 @@
 
     var srcStartImage = $(".comicRow img").attr('src');
     var srcArray = srcStartImage.split("-");
-    var srcNumber = Number(srcArray[srcArray.length - 1].split(".")[0]);
-    srcNumber--;
+    var srcComicNumber = Number(srcArray[srcArray.length - 1].split(".")[0]);
+    srcComicNumber--;
 
     $("#loadMore").click(function(e) { // click event for load more
       e.preventDefault();
       var counter = 3;
 
       while (counter > 0) {
-        if (srcNumber == 0) {
+        if (srcComicNumber == 0) {
           counter = 0;
           $("#loadMore").hide();
         } else {
           var comicTemplate = '<div class="row comicRow">' +
             '<div class="col comicColumn mb-5">' +
               '<div class="portfolio-main portfolio-item mx-auto">' +
-                '<img class="img-fluid" src="assets/img/portfolio/TToS-Comic-' + pad(srcNumber, 4) + '.png" alt="" />' +
+                '<img class="img-fluid" src="assets/img/portfolio/TToS-Comic-' + pad(srcComicNumber, 4) + '.png" alt="" />' +
               '</div>' +
             '</div>' +
           '</div>';
           $(".comicGallery").append(comicTemplate).show('normal');
           counter--;
-          srcNumber--;
+          srcComicNumber--;
         }
+      }
+
+      if (srcComicNumber == 0) {
+        counter = 0;
+        $("#loadMore").hide();
+      }
+    });
+
+    var srcStartImage = $(".artRow img").attr('src');
+    var srcArray = srcStartImage.split("-");
+    var srcArtNumber = Number(srcArray[srcArray.length - 1].split(".")[0]);
+    srcArtNumber--;
+
+    $("#loadMoreArt").click(function(e) { // click event for load more
+      e.preventDefault();
+      var counter = 3;
+
+      while (counter > 0) {
+        if (srcArtNumber == -1) {
+          counter = 0;
+          $("#loadMoreArt").hide();
+        } else {
+          var fileType = srcArtNumber < 8 ? ".jpg" : ".png";
+          var artTemplate = '<div class="row artRow">' +
+            '<div class="col artColumn mb-5">' +
+              '<div class="portfolio-main portfolio-item mx-auto">' +
+                '<img class="img-fluid" src="assets/img/episodes/TToS-Episode-' + pad(srcArtNumber, 4) + fileType + '" alt="" />' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+          $(".artGallery").append(artTemplate).show('normal');
+          counter--;
+          srcArtNumber--;
+        }
+      }
+
+      if (srcArtNumber == -1) {
+        counter = 0;
+        $("#loadMoreArt").hide();
       }
     });
 
