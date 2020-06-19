@@ -7862,6 +7862,7 @@ button.bg-dark:focus {
 .mr-auto,
 .mx-auto {
   margin-right: auto !important;
+  text-align: center;
 }
 
 .mb-auto,
