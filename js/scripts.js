@@ -54,17 +54,6 @@
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
 
-    // Floating label headings for the contact form
-    $(function() {
-      $("body").on("input propertychange", ".floating-label-form-group", function(e) {
-        $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
-      }).on("focus", ".floating-label-form-group", function() {
-        $(this).addClass("floating-label-form-group-with-focus");
-      }).on("blur", ".floating-label-form-group", function() {
-        $(this).removeClass("floating-label-form-group-with-focus");
-      });
-    });
-
     function pad(num, size) {
       var s = "000000000" + num;
       return s.substr(s.length-size);
@@ -100,40 +89,6 @@
       if (srcComicNumber == 0) {
         counter = 0;
         $("#loadMore").hide();
-      }
-    });
-
-    var srcStartImage = $(".artRow img").attr('src');
-    var srcArray = srcStartImage.split("-");
-    var srcArtNumber = Number(srcArray[srcArray.length - 1].split(".")[0]);
-    srcArtNumber--;
-
-    $("#loadMoreArt").click(function(e) { // click event for load more
-      e.preventDefault();
-      var counter = 3;
-
-      while (counter > 0) {
-        if (srcArtNumber == -1) {
-          counter = 0;
-          $("#loadMoreArt").hide();
-        } else {
-          var fileType = srcArtNumber < 8 ? ".jpg" : ".png";
-          var artTemplate = '<div class="row artRow">' +
-            '<div class="col artColumn mb-5">' +
-              '<div class="portfolio-main portfolio-item mx-auto">' +
-                '<img class="img-fluid" src="assets/img/episodes/TToS-Episode-' + pad(srcArtNumber, 4) + fileType + '" alt="" />' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-          $(".artGallery").append(artTemplate).show('normal');
-          counter--;
-          srcArtNumber--;
-        }
-      }
-
-      if (srcArtNumber == -1) {
-        counter = 0;
-        $("#loadMoreArt").hide();
       }
     });
 

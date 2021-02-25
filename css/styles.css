@@ -10196,3 +10196,7 @@ form .row:first-child .floating-label-form-group {
 .loadMoreDiv {
   text-align: center;
 }
+
+.borderless {
+  border-radius: 0 !important;
+}
