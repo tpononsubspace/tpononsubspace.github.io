@@ -6,8 +6,6 @@
     (function($) {
     "use strict"; // Start of use strict
 
-    const episodeTotal = 22;
-
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
       if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -56,19 +54,6 @@
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
 
-    function loadEpisodeArt(episodeCount) {
-      const carouselParent = $(".carousel-inner");
-
-      for (var i = 1; i <= episodeCount; i++) {
-        var episodeTemplate = '<div class="carousel-item active" data-interval="4000">' + 
-          '<img src="assets/img/episodes/TToS-Episode-' + pad(i, 4) + '.png" class="d-block w-100" alt="">' + 
-        '</div>';
-        carouselParent.append(episodeTemplate);
-      }
-
-      return;
-    }
-
     function pad(num, size) {
       var s = "000000000" + num;
       return s.substr(s.length-size);
@@ -106,6 +91,4 @@
         $("#loadMore").hide();
       }
     });
-
-    loadEpisodeArt(episodeTotal);
   })(jQuery); // End of use strict
