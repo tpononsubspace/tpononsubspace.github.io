@@ -107,5 +107,5 @@
       }
     });
 
-    loadEpisodeArt();
+    loadEpisodeArt(episodeTotal);
   })(jQuery); // End of use strict
